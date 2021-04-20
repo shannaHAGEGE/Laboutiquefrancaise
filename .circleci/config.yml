@@ -44,4 +44,19 @@ jobs:
            command: |
              ssh azureuser@51.103.78.117
              exit
-
+workflows:
+  version: 2
+  notify_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - main
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
