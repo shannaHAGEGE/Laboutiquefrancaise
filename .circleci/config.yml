@@ -42,7 +42,7 @@ jobs:
        - run:
            name: Ma premiere connexion à ma vm
            command: |
-             ssh azureuser@51.103.78.117
+             ssh azureuser@51.103.78.117 -oStrictHostKeyChecking=no
              exit
 workflows:
   version: 2
