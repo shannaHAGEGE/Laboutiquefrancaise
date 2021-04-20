@@ -42,7 +42,8 @@ jobs:
        - run:
            name: Ma premiere connexion à ma vm
            command: |
-
+             ssh azureuser@51.103.78.117
+             exit
 workflows:
   version: 2
   notify_deploy:
