@@ -8,7 +8,7 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
-
+    working_directory: ~/deploy
 
 
     steps:
@@ -33,7 +33,8 @@ jobs:
             - ./vendor
   deploy:
      docker:
-       - image: circleci/php:7.3-node-browsers
+       - image: circleci/php:7.4-node-browsers
+
      steps:
        - checkout
        - add_ssh_keys:
@@ -42,8 +43,16 @@ jobs:
        - run:
            name: Ma premiere connexion à ma vm
            command: |
-             ssh azureuser@51.103.78.117 -oStrictHostKeyChecking=no
-             exit
+             curl -LO https://deployer.org/deployer.phar
+             mv deployer.phar /usr/local/bin/dep
+             chmod +x /usr/local/bin/dep
+       - run:
+           name: Deployer
+           command: |
+             dep build
+
+
+
 workflows:
   version: 2
   notify_deploy:
