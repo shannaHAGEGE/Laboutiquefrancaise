@@ -49,7 +49,7 @@ jobs:
        - run:
            name: Deployer
            command: |
-             dep build
+             dep deploy
 
 
 

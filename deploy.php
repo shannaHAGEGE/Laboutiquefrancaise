@@ -26,14 +26,17 @@ host('51.103.78.117')
     ->user('azureuser')
     ->addSshOption('UserKnownHostsFile', '/dev/null')
     ->addSshOption('StrictHostKeyChecking', 'no')
-    ->set('deploy_path', '~/{{application}}');    
+    ->set('deploy_path', '~/{{application}}');
     
 // Tasks
 
-task('build', function () {
-    run('cd {{release_path}} && build');
-});
+task('deploy', [
+    'rename_env'
+]);
 
+task('rename_env', function(){
+    run('cp ~/.env ~/{{application}}/');
+});
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
