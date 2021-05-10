@@ -31,7 +31,19 @@ host('51.103.78.117')
 // Tasks
 
 task('deploy', [
-    'rename_env'
+    'deploy:info',
+    'deploy:prepare','deploy:lock',
+    'deploy:release',
+    'deploy:update_code',
+    'deploy:clear_paths',
+    'deploy:shared',
+    'rename_env',
+    'deploy:vendors','deploy:cache:clear',
+    'deploy:cache:warmup',
+    'deploy:writable',
+    'deploy:symlink',
+    'deploy:unlock',
+    'cleanup','success'
 ]);
 
 task('rename_env', function(){
