@@ -48,7 +48,7 @@ task('deploy', [
 ]);
 
 task('rename_env', function(){
-    run('cp {{deploy_path}}/.env {{release_path}}/.env ~/{{application}}/');
+    run('cp ~/.env ~/{{application}}/');
 });
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
