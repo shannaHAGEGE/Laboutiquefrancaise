@@ -31,6 +31,7 @@ host('51.103.78.117')
 // Tasks
 
 task('deploy', [
+    'deploy:unlock',
     'deploy:info',
     'deploy:prepare','deploy:lock',
     'deploy:release',
