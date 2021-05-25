@@ -49,7 +49,7 @@ task('deploy', [
 task('force_cache',function (){    run('rm -fr {{release_path}}/cache');
 });
 
-task('deploy:rename_env', function () {
+task('rename_env', function () {
     run('cp {{deploy_path}}/.env {{release_path}}/.env');
 });
 
