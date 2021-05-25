@@ -31,14 +31,13 @@ host('51.103.78.117')
 // Tasks
 
 task('deploy', [
-    'deploy:unlock',
     'deploy:info',
     'deploy:prepare','deploy:lock',
     'deploy:release',
     'deploy:update_code',
     'deploy:clear_paths',
     'deploy:shared',
-    'deploy:rename_env',
+    'rename_env',
     'deploy:vendors',
     'force_cache',
     'deploy:writable',
@@ -50,9 +49,10 @@ task('deploy', [
 task('force_cache',function (){    run('rm -fr {{release_path}}/cache');
 });
 
-task('rename_env', function(){
-    run('cp ~/.env ~/{{application}}/');
+task('deploy:rename_env', function () {
+    run('cp {{deploy_path}}/.env {{release_path}}/.env');
 });
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
