@@ -38,14 +38,17 @@ task('deploy', [
     'deploy:update_code',
     'deploy:clear_paths',
     'deploy:shared',
-    'rename_env',
-    'deploy:vendors','deploy:cache:clear',
-    'deploy:cache:warmup',
+    'deploy:rename_env',
+    'deploy:vendors',
+    'force_cache',
     'deploy:writable',
     'deploy:symlink',
     'deploy:unlock',
     'cleanup','success'
 ]);
+
+task('force_cache',function (){    run('rm -fr {{release_path}}/cache');
+});
 
 task('rename_env', function(){
     run('cp ~/.env ~/{{application}}/');
