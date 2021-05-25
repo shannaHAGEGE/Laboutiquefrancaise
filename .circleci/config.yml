@@ -34,6 +34,7 @@ jobs:
   deploy:
      docker:
        - image: circleci/php:7.4-node-browsers
+     working_directory: ~/deploy
 
      steps:
        - checkout
