@@ -14,7 +14,8 @@ set('git_tty', true);
 
 // Shared files/dirs between deploys 
 add('shared_files', []);
-add('shared_dirs', []);
+add('shared_dirs', ['var']);
+set('clear_paths',['var/cache']);
 
 // Writable dirs by web server 
 add('writable_dirs', []);
@@ -39,14 +40,13 @@ task('deploy', [
     'deploy:shared',
     'rename_env',
     'deploy:vendors',
-    'force_cache',
     'deploy:writable',
     'deploy:symlink',
     'deploy:unlock',
     'cleanup','success'
 ]);
 
-task('force_cache',function (){    run('rm -fr {{release_path}}/cache');
+task('force_cache',function (){    run('rm -fr {{release_path}}/var/cache');
 });
 
 task('rename_env', function () {
